@@ -12,13 +12,12 @@
     server {
         listen       80;
 
-	root /home/marc/sfrails.com;
+	root /php-source/sfrails.com;
 
         server_name  sfrails.com;
 
-        access_log /var/log/nginx/sfrails.com.access.log;
-        error_log /var/log/nginx/sfrails.com.error.log;
-
+	access_log /var/log/nginx/access.log;
+	error_log /var/log/nginx/error.log;
         #charset koi8-r;
 
         #access_log  logs/host.access.log  main;
@@ -72,12 +71,12 @@
     #
     server {
         listen       443;
-	root /home/marc/sfrails.com;
+	root /php-source/sfrails.com;
         server_name  sfrails.com;
 
         ssl                  on;
-        ssl_certificate      /home/marc/openssl_keys/sfrails.com/ssl.crt;
-        ssl_certificate_key  /home/marc/openssl_keys/sfrails.com/server.key;
+        ssl_certificate      /openssl_keys/sfrails.com/ssl.crt;
+        ssl_certificate_key  /openssl_keys/sfrails.com/server.key;
 
         ssl_session_timeout  5m;
 
