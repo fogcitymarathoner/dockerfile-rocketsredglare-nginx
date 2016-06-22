@@ -12,7 +12,7 @@
     server {
         listen       80;
 
-	root /home/marc/sfrails.com;
+	root /php-source/sfrails.com;
 
         server_name  sfrails.com;
 
@@ -72,12 +72,12 @@
     #
     server {
         listen       443;
-	root /home/marc/sfrails.com;
+	root /php-source/sfrails.com;
         server_name  sfrails.com;
 
         ssl                  on;
-        ssl_certificate      /home/marc/openssl_keys/sfrails.com/ssl.crt;
-        ssl_certificate_key  /home/marc/openssl_keys/sfrails.com/server.key;
+        ssl_certificate      /openssl_keys/sfrails.com/ssl.crt;
+        ssl_certificate_key  /openssl_keys/sfrails.com/server.key;
 
         ssl_session_timeout  5m;
 
