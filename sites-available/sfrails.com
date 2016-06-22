@@ -16,8 +16,8 @@
 
         server_name  sfrails.com;
 
-        access_log /var/log/nginx/sfrails.com.access.log;
-        error_log /var/log/nginx/sfrails.com.error.log;
+        # access_log /var/log/nginx/sfrails.com.access.log;
+        # error_log /var/log/nginx/sfrails.com.error.log;
 
         #charset koi8-r;
 
