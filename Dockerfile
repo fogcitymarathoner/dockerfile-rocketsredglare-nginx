@@ -8,4 +8,4 @@ ADD conf/nginx-pmwiki-site.conf /etc/nginx/sites-available/default.conf
 RUN ln -s /etc/nginx/sites-available/default.conf /etc/nginx/sites-enabled/default.conf
 # sfrails.com
 ADD sites-available/sfrails.com /etc/nginx/sites-available/sfrails.com
-RUN ln -s /etc/nginx/sites-available/sfrails.com /etc/nginx/sites-enabled/sfrails.com
+#RUN ln -s /etc/nginx/sites-available/sfrails.com /etc/nginx/sites-enabled/sfrails.com
