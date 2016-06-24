@@ -134,14 +134,12 @@
            proxy_set_header   X-Forwarded-Host $server_name;
         }
 
-	location ~ \.php$ {
-		fastcgi_split_path_info ^(.+\.php)(/.+)$;
-		# NOTE: You should have "cgi.fix_pathinfo = 0;" in php.ini
-		fastcgi_pass   127.0.0.1:9000;
-		# Edit listen directive in /etc/php5/fpm/pool.d/www.conf 
-		fastcgi_index index.php;
-		include fastcgi_params;
-	}
+        location ~ \.php$ {
+            fastcgi_pass   127.0.0.1:9000;
+            fastcgi_index  index.php;
+            fastcgi_param  SCRIPT_FILENAME  /opt/bitnami/nginx/html$fastcgi_script_name;
+            include        fastcgi_params;
+        }
 
     }
 
