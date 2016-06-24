@@ -74,6 +74,7 @@
 	root /var/www/html/sfrails.com;
         server_name  sfrails.com;
 
+	index index.php index.html index.htm pmwiki.php;
         ssl                  on;
         ssl_certificate      /openssl_keys/sfrails.com/ssl.crt;
         ssl_certificate_key  /openssl_keys/sfrails.com/server.key;
@@ -86,8 +87,13 @@
 
         # that's for all other content on the web host
 	location / {
-		autoindex   off;
-		index       pmwiki.php index.php index.html index.htm ;
+		# First attempt to serve request as file, then
+		# as directory, then fall back to index.html
+		try_files $uri $uri/ /index.html;
+		# Uncomment to enable naxsi on this location
+		# include /etc/nginx/naxsi.rules
+
+
 	}
 	location /pics {
 		autoindex   off;
