@@ -21,7 +21,7 @@ server {
 	listen   80; ## listen for ipv4; this line is default and implied
 	# listen   [::]:80 default ipv6only=on; ## listen for ipv6
 
-	root /var/www/html/sfrails.com;
+	root /usr/share/nginx/www/sfrails.com;
 	index index.php index.html index.htm pmwiki.php;
 
 	# Make site accessible from http://sfrails.com/
