@@ -71,7 +71,7 @@
     #
     server {
         listen       443;
-	root /php-source/sfrails.com;
+	root /var/www/html/sfrails.com;
         server_name  sfrails.com;
 
         ssl                  on;
