@@ -24,10 +24,18 @@
 
         # that's for all other content on the web host
 
-        location / {
-                # force login to use https
-                rewrite (.*) https://sfrails.com$1 permanent;
-        }
+        #location / {
+        #        # force login to use https
+        #        rewrite (.*) https://sfrails.com$1 permanent;
+        #}
+        
+	location / {
+		# First attempt to serve request as file, then
+		# as directory, then fall back to index.html
+		try_files $uri $uri/ /index.html;
+		# Uncomment to enable naxsi on this location
+		# include /etc/nginx/naxsi.rules
+	}
         #error_page  404              /404.html;
 
         # redirect server error pages to the static page /50x.html
@@ -36,7 +44,14 @@
         location = /50x.html {
             root   html;
         }
-
+        # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
+        #
+        location ~ \.php$ {
+            fastcgi_pass   127.0.0.1:9000;
+            fastcgi_index  index.php;
+            fastcgi_param  SCRIPT_FILENAME  /opt/bitnami/nginx/html$fastcgi_script_name;
+            include        fastcgi_params;
+        }
         # proxy the PHP scripts to Apache listening on 127.0.0.1:80
         #
         #location ~ \.php$ {
