@@ -1,49 +1,51 @@
-    upstream access_tokens {
-         server 127.0.0.1:8110;
-    }
+# You may add here your
+# server {
+#	...
+# }
+# statements for each of your virtual hosts to this file
 
-    server {
-       server_name www.sfrails.com;
-       #rewrite ^(.*) http://www.sfrails.com$1 permanent;
+##
+# You should look at the following URL's in order to grasp a solid understanding
+# of Nginx configuration files in order to fully unleash the power of Nginx.
+# http://wiki.nginx.org/Pitfalls
+# http://wiki.nginx.org/QuickStart
+# http://wiki.nginx.org/Configuration
+#
+# Generally, you will want to move this file somewhere, and start with a clean
+# file but keep this around for reference. Or just disable in sites-enabled.
+#
+# Please see /usr/share/doc/nginx-doc/examples/ for more detailed examples.
+##
 
-    return 301 $scheme://sfrails.com$request_uri;
-    }
+server {
+	listen   80; ## listen for ipv4; this line is default and implied
+	listen   [::]:80 default ipv6only=on; ## listen for ipv6
 
-    server {
-        listen       80;
+	root /usr/share/nginx/www/sfrails.com;
+	index index.php index.html index.htm pmwiki.php;
 
-	root /var/www/http/sfrails.com;
+	# Make site accessible from http://localhost/
+	server_name localhost;
+	access_log /var/log/nginx/default.access.log;
+	error_log /var/log/nginx/default.error.log;
 
-        server_name  sfrails.com;
-
-	access_log /var/log/nginx/access.log;
-	error_log /var/log/nginx/error.log;
-        #charset koi8-r;
-
-        #access_log  logs/host.access.log  main;
-
-        # that's for all other content on the web host
-
-        #location / {
-        #        # force login to use https
-        #        rewrite (.*) https://sfrails.com$1 permanent;
-        #}
-        
 	location / {
 		# First attempt to serve request as file, then
 		# as directory, then fall back to index.html
 		try_files $uri $uri/ /index.html;
 		# Uncomment to enable naxsi on this location
 		# include /etc/nginx/naxsi.rules
-	}
-        #error_page  404              /404.html;
 
-        # redirect server error pages to the static page /50x.html
-        #
-        error_page   500 502 503 504  /50x.html;
-        location = /50x.html {
-            root   html;
-        }
+
+	}
+
+	location /doc/ {
+		alias /usr/share/doc/;
+		autoindex on;
+		allow 127.0.0.1;
+		deny all;
+	}
+
         # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
         #
         location ~ \.php$ {
@@ -52,115 +54,81 @@
             fastcgi_param  SCRIPT_FILENAME  /opt/bitnami/nginx/html$fastcgi_script_name;
             include        fastcgi_params;
         }
-        # proxy the PHP scripts to Apache listening on 127.0.0.1:80
-        #
-        #location ~ \.php$ {
-        #    proxy_pass   http://127.0.0.1;
-        #}
 
 
-        # deny access to .htaccess files, if Apache's document root
-        # concurs with nginx's one
-        #
-        #location ~ /\.ht {
-        #    deny  all;
-        #}
-    }
+	# Only for nginx-naxsi : process denied requests
+	#location /RequestDenied {
+		# For example, return an error code
+		#return 418;
+	#}
+
+	#error_page 404 /404.html;
+
+	# redirect server error pages to the static page /50x.html
+	#
+	#error_page 500 502 503 504 /50x.html;
+	#location = /50x.html {
+	#	root /usr/share/nginx/www;
+	#}
+
+	# pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
+	#
+	#location ~ \.php$ {
+	#	fastcgi_split_path_info ^(.+\.php)(/.+)$;
+	#	# NOTE: You should have "cgi.fix_pathinfo = 0;" in php.ini
+	#
+	#	# With php5-cgi alone:
+	#	fastcgi_pass 127.0.0.1:9000;
+	#	# With php5-fpm:
+	#	fastcgi_pass unix:/var/run/php5-fpm.sock;
+	#	fastcgi_index index.php;
+	#	include fastcgi_params;
+	#}
+
+	# deny access to .htaccess files, if Apache's document root
+	# concurs with nginx's one
+	#
+	#location ~ /\.ht {
+	#	deny all;
+	#}
+}
 
 
-    # another virtual host using mix of IP-, name-, and port-based configuration
-    #
-    #server {
-    #    listen       8000;
-    #    listen       somename:8080;
-    #    server_name  somename  alias  another.alias;
-
-    #    location / {
-    #        root   html;
-    #        index  index.html index.htm;
-    #    }
-    #}
-
-
-    # HTTPS server
-    #
-    server {
-        listen       443;
-	root /var/www/html/sfrails.com;
-        server_name  sfrails.com;
-
-	index index.php index.html index.htm pmwiki.php;
-        ssl                  on;
-        ssl_certificate      /openssl_keys/sfrails.com/ssl.crt;
-        ssl_certificate_key  /openssl_keys/sfrails.com/server.key;
-
-        ssl_session_timeout  5m;
-
-        ssl_protocols  SSLv2 SSLv3 TLSv1;
-        ssl_ciphers  HIGH:!aNULL:!MD5;
-        ssl_prefer_server_ciphers   on;
-
-        # that's for all other content on the web host
-	location / {
-		# First attempt to serve request as file, then
-		# as directory, then fall back to index.html
-		try_files $uri $uri/ /index.html;
-		# Uncomment to enable naxsi on this location
-		# include /etc/nginx/naxsi.rules
+# another virtual host using mix of IP-, name-, and port-based configuration
+#
+#server {
+#	listen 8000;
+#	listen somename:8080;
+#	server_name somename alias another.alias;
+#	root html;
+#	index index.html index.htm;
+#
+#	location / {
+#		try_files $uri $uri/ /index.html;
+#	}
+#}
 
 
-	}
-	location /pics {
-		autoindex   off;
-		index       index.php ;
-	}
-	# that's for cakephp
-
-
-        location /pics/static {
-                autoindex on;
-                alias /home/marc/python_apps/pics/media/;
-        }
-
-        location /issue_api_key {
-           proxy_pass         http://access_tokens;
-           proxy_redirect     off;
-           proxy_set_header   Host $host;
-           proxy_set_header   X-Real-IP $remote_addr;
-           proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
-           proxy_set_header   X-Forwarded-Host $server_name;
-        }
-        location /issue_token {
-           proxy_pass         http://access_tokens;
-           proxy_redirect     off;
-           proxy_set_header   Host $host;
-           proxy_set_header   X-Real-IP $remote_addr;
-           proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
-           proxy_set_header   X-Forwarded-Host $server_name;
-        }
-        location /validate_token {
-           proxy_pass         http://access_tokens;
-           proxy_redirect     off;
-           proxy_set_header   Host $host;
-           proxy_set_header   X-Real-IP $remote_addr;
-           proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
-           proxy_set_header   X-Forwarded-Host $server_name;
-        }
-        location /token_list {
-           proxy_pass         http://access_tokens;
-           proxy_redirect     off;
-           proxy_set_header   Host $host;
-           proxy_set_header   X-Real-IP $remote_addr;
-           proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
-           proxy_set_header   X-Forwarded-Host $server_name;
-        }
-
-        location ~ \.php$ {
-            fastcgi_pass   127.0.0.1:9000;
-            fastcgi_index  index.php;
-            fastcgi_param  SCRIPT_FILENAME  /opt/bitnami/nginx/html$fastcgi_script_name;
-            include        fastcgi_params;
-        }
-
-    }
-
+# HTTPS server
+#
+#server {
+#	listen 443;
+#	server_name localhost;
+#
+#	root html;
+#	index index.html index.htm;
+#
+#	ssl on;
+#	ssl_certificate cert.pem;
+#	ssl_certificate_key cert.key;
+#
+#	ssl_session_timeout 5m;
+#
+#	ssl_protocols SSLv3 TLSv1;
+#	ssl_ciphers ALL:!ADH:!EXPORT56:RC4+RSA:+HIGH:+MEDIUM:+LOW:+SSLv3:+EXP;
+#	ssl_prefer_server_ciphers on;
+#
+#	location / {
+#		try_files $uri $uri/ /index.html;
+#	}
+#}
