@@ -12,7 +12,7 @@
     server {
         listen       80;
 
-	root /php-source/sfrails.com;
+	root /var/www/http/sfrails.com;
 
         server_name  sfrails.com;
 
