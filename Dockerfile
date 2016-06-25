@@ -4,26 +4,28 @@ FROM richarvey/nginx-php-fpm
 RUN rm /etc/nginx/sites-available/default.conf
 RUN rm /etc/nginx/sites-enabled/default.conf
 
+
+#
+# cake.rocketsredglare.com
+#
+# ADD sites-available/cake.rocketsredglare.com /etc/nginx/sites-available/cake.rocketsredglare.com
+# RUN ln -s /etc/nginx/sites-available/cake.rocketsredglare.com /etc/nginx/sites-enabled/cake.rocketsredglare.com
+
 #
 # Default raw IP site
 #
 ADD conf/nginx-pmwiki-site.conf /etc/nginx/sites-available/default.conf
-RUN ln -s /etc/nginx/sites-available/default.conf /etc/nginx/sites-enabled/00
-
-#
-# sfrails.com
-#
-ADD sites-available/sfrails.com /etc/nginx/sites-available/sfrails.com
-RUN ln -s /etc/nginx/sites-available/sfrails.com /etc/nginx/sites-enabled/01
+RUN ln -s /etc/nginx/sites-available/default.conf /etc/nginx/sites-enabled/default.conf
 
 #
 # sfgeek.net
 #
 ADD sites-available/sfgeek.net /etc/nginx/sites-available/sfgeek.net
-RUN ln -s /etc/nginx/sites-available/sfgeek.net /etc/nginx/sites-enabled/02
+RUN ln -s /etc/nginx/sites-available/sfgeek.net /etc/nginx/sites-enabled/sfgeek.net
 
 #
-# cake.rocketsredglare.com
+# sfrails.com
 #
-ADD sites-available/cake.rocketsredglare.com /etc/nginx/sites-available/cake.rocketsredglare.com
-RUN ln -s /etc/nginx/sites-available/cake.rocketsredglare.com /etc/nginx/sites-enabled/03
+ADD sites-available/sfrails.com /etc/nginx/sites-available/sfrails.com
+RUN ln -s /etc/nginx/sites-available/sfrails.com /etc/nginx/sites-enabled/sfrails.com
+
