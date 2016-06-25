@@ -52,8 +52,8 @@ server {
 	
 
 	ssl on;
-    ssl_certificate      /openssl_keys/sfrails.com/ssl.crt;
-    ssl_certificate_key  /openssl_keys/sfrails.com/server.key;
+        ssl_certificate      /openssl_keys/sfrails.com/ssl.crt;
+        ssl_certificate_key  /openssl_keys/sfrails.com/server.key;
 
 	ssl_session_timeout 5m;
 
@@ -79,19 +79,3 @@ server {
 
 
 }
-
-
-# another virtual host using mix of IP-, name-, and port-based configuration
-#
-#server {
-#	listen 8000;
-#	listen somename:8080;
-#	server_name somename alias another.alias;
-#	root html;
-#	index index.html index.htm;
-#
-#	location / {
-#		try_files $uri $uri/ /index.html;
-#	}
-#}
-
