@@ -35,6 +35,7 @@
 
 	
 	root /var/www/html/cake.rocketsredglare.com;
+	index index.php index.html index.htm pmwiki.php;
         server_name  cake.rocketsredglare.com;
 
         ssl                  on;
@@ -47,10 +48,7 @@
         ssl_prefer_server_ciphers   on;
         
         # that's for all other content on the web host
-	location / {
-		autoindex   off;
-		index       pmwiki.php index.php index.html index.htm ;
-	}
+
 	location /pics {
 		autoindex   off;
 		index       index.php ;
