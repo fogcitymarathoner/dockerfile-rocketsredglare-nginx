@@ -16,6 +16,10 @@
 #
 # Please see /usr/share/doc/nginx-doc/examples/ for more detailed examples.
 ##
+server {
+   server_name www.sfrails.com;
+   return 301 $scheme://sfrails.com$request_uri;
+}
 
 server {
 	listen   80; ## listen for ipv4; this line is default and implied
@@ -24,77 +28,56 @@ server {
 	root /var/www/html/sfrails.com;
 	index index.php index.html index.htm pmwiki.php;
 
-	# Make site accessible from http://localhost/
+	# Make site accessible from http://sfrails.com/
 	server_name sfrails.com;
 	access_log /var/log/nginx/default.access.log;
 	error_log /var/log/nginx/default.error.log;
 
 	location / {
-		# First attempt to serve request as file, then
-		# as directory, then fall back to index.html
+			# force login to use https
+			rewrite (.*) https://sfgeek.net$1 permanent;
+	}
+}
+
+# HTTPS server
+#
+server {
+	listen 443;
+	
+	root /var/www/html/sfrails.com;
+	index index.php index.html index.htm pmwiki.php;
+
+	# Make site accessible from https://sfrails.com/
+	server_name sfrails.com;
+	
+
+	ssl on;
+    ssl_certificate      /openssl_keys/sfrails.com/ssl.crt;
+    ssl_certificate_key  /openssl_keys/sfrails.com/server.key;
+
+	ssl_session_timeout 5m;
+
+	ssl_protocols SSLv3 TLSv1;
+	ssl_ciphers ALL:!ADH:!EXPORT56:RC4+RSA:+HIGH:+MEDIUM:+LOW:+SSLv3:+EXP;
+	ssl_prefer_server_ciphers on;
+
+	location / {
 		try_files $uri $uri/ /index.html;
-		# Uncomment to enable naxsi on this location
-		# include /etc/nginx/naxsi.rules
-
-
 	}
-
-	location /doc/ {
-		alias /usr/share/doc/;
-		autoindex on;
-		allow 127.0.0.1;
-		deny all;
-	}
-
-        # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
-        #
+	
+	# pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
+    #
 	location ~ \.php$ {
-                try_files $uri =404;
+        try_files $uri =404;
 		fastcgi_split_path_info ^(.+\.php)(/.+)$;
 		fastcgi_pass unix:/var/run/php-fpm.sock;
 		fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-    		fastcgi_param SCRIPT_NAME $fastcgi_script_name;
+		fastcgi_param SCRIPT_NAME $fastcgi_script_name;
 		fastcgi_index index.php;
 		include fastcgi_params;
 	}
 
 
-
-	# Only for nginx-naxsi : process denied requests
-	#location /RequestDenied {
-		# For example, return an error code
-		#return 418;
-	#}
-
-	#error_page 404 /404.html;
-
-	# redirect server error pages to the static page /50x.html
-	#
-	#error_page 500 502 503 504 /50x.html;
-	#location = /50x.html {
-	#	root /usr/share/nginx/www;
-	#}
-
-	# pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
-	#
-	#location ~ \.php$ {
-	#	fastcgi_split_path_info ^(.+\.php)(/.+)$;
-	#	# NOTE: You should have "cgi.fix_pathinfo = 0;" in php.ini
-	#
-	#	# With php5-cgi alone:
-	#	fastcgi_pass 127.0.0.1:9000;
-	#	# With php5-fpm:
-	#	fastcgi_pass unix:/var/run/php5-fpm.sock;
-	#	fastcgi_index index.php;
-	#	include fastcgi_params;
-	#}
-
-	# deny access to .htaccess files, if Apache's document root
-	# concurs with nginx's one
-	#
-	#location ~ /\.ht {
-	#	deny all;
-	#}
 }
 
 
@@ -112,27 +95,3 @@ server {
 #	}
 #}
 
-
-# HTTPS server
-#
-#server {
-#	listen 443;
-#	server_name localhost;
-#
-#	root html;
-#	index index.html index.htm;
-#
-#	ssl on;
-#   ssl_certificate      /openssl_keys/sfrails.com/ssl.crt;
-#   ssl_certificate_key  /openssl_keys/sfrails.com/server.key;
-#
-#	ssl_session_timeout 5m;
-#
-#	ssl_protocols SSLv3 TLSv1;
-#	ssl_ciphers ALL:!ADH:!EXPORT56:RC4+RSA:+HIGH:+MEDIUM:+LOW:+SSLv3:+EXP;
-#	ssl_prefer_server_ciphers on;
-#
-#	location / {
-#		try_files $uri $uri/ /index.html;
-#	}
-#}
