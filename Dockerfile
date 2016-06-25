@@ -21,3 +21,9 @@ RUN ln -s /etc/nginx/sites-available/sfrails.com /etc/nginx/sites-enabled/sfrail
 #
 ADD sites-available/sfgeek.net /etc/nginx/sites-available/sfgeek.net
 RUN ln -s /etc/nginx/sites-available/sfgeek.net /etc/nginx/sites-enabled/sfgeek.net
+
+#
+# cake.rocketsredglare.com
+#
+ADD sites-available/cake.rocketsredglare.com /etc/nginx/sites-available/cake.rocketsredglare.com
+RUN ln -s /etc/nginx/sites-available/cake.rocketsredglare.com /etc/nginx/sites-enabled/cake.rocketsredglare.com
