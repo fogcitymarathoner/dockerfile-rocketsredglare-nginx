@@ -8,7 +8,7 @@ RUN rm /etc/nginx/sites-enabled/default.conf
 # Default raw IP site
 #
 ADD conf/nginx-pmwiki-site.conf /etc/nginx/sites-available/default.conf
-RUN ln -s /etc/nginx/sites-available/default.conf /etc/nginx/sites-enabled/99
+RUN ln -s /etc/nginx/sites-available/default.conf /etc/nginx/sites-enabled/00
 
 #
 # sfrails.com
