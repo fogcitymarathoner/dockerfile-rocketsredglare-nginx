@@ -6,7 +6,7 @@ server {
 	index index.php index.html index.htm;
 
 	# Make site accessible from http://localhost/
-	server_name 54.213.229.32;
+	server_name _;
 	
 	# Disable sendfile as per https://docs.vagrantup.com/v2/synced-folders/virtualbox.html
 	sendfile off;
@@ -17,6 +17,12 @@ server {
 	access_log /dev/stdout;
 
 	location / {
+		# First attempt to serve request as file, then
+		# as directory, then fall back to index.html
+		try_files $uri $uri/ /index.php?q=$uri&$args;
+	}
+
+	location /sfrails.com {
 		# First attempt to serve request as file, then
 		# as directory, then fall back to index.html
 		try_files $uri $uri/ /index.php?q=$uri&$args;
