@@ -35,7 +35,7 @@ server {
 
 	location / {
 			# force login to use https
-			rewrite (.*) https://sfgeek.net$1 permanent;
+			rewrite (.*) https://sfrails.com$1 permanent;
 	}
 }
 
