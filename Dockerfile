@@ -11,6 +11,13 @@ RUN rm /etc/nginx/sites-enabled/default.conf
 ADD sites-available/cake.rocketsredglare.com /etc/nginx/sites-available/cake.rocketsredglare.com
 RUN ln -s /etc/nginx/sites-available/cake.rocketsredglare.com /etc/nginx/sites-enabled/cake.rocketsredglare.com
 
+
+#
+# rocketsredglare.com
+#
+ADD sites-available/cake.rocketsredglare.com /etc/nginx/sites-available/rocketsredglare.com
+RUN ln -s /etc/nginx/sites-available/cake.rocketsredglare.com /etc/nginx/sites-enabled/rocketsredglare.com
+
 #
 # Default raw IP site
 #
