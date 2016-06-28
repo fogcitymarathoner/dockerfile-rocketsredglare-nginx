@@ -15,8 +15,8 @@ RUN ln -s /etc/nginx/sites-available/cake.rocketsredglare.com /etc/nginx/sites-e
 #
 # rocketsredglare.com
 #
-ADD sites-available/cake.rocketsredglare.com /etc/nginx/sites-available/rocketsredglare.com
-RUN ln -s /etc/nginx/sites-available/cake.rocketsredglare.com /etc/nginx/sites-enabled/rocketsredglare.com
+ADD sites-available/rocketsredglare.com /etc/nginx/sites-available/rocketsredglare.com
+RUN ln -s /etc/nginx/sites-available/rocketsredglare.com /etc/nginx/sites-enabled/rocketsredglare.com
 
 #
 # Default raw IP site
