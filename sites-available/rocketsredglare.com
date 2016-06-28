@@ -10,58 +10,10 @@
         listen       80;
 
 	root /var/www/html/rocketsredglare.com;
-		index index.php index.html index.htm pmwiki.php;
-			
+	index index.php index.html index.htm pmwiki.php;
 
-		access_log /var/log/nginx/default.access.log;
-		error_log /var/log/nginx/default.error.log;
-
-        #charset koi8-r;
-
-        #access_log  logs/host.access.log  main;
-
-        # that's for all other content on the web host
-
-        location / {
-                # force login to use https
-                rewrite (.*) https://rocketsredglare.com$1 permanent;
-        }
-
-    }
-
-
-    # another virtual host using mix of IP-, name-, and port-based configuration
-    #
-    #server {
-    #    listen       8000;
-    #    listen       somename:8080;
-    #    server_name  somename  alias  another.alias;
-
-    #    location / {
-    #        root   html;
-    #        index  index.html index.htm;
-    #    }
-    #}
-
-
-    # HTTPS server
-    #
-    server {
-        listen       443;
-	root /var/www/html/rocketsredglare.com;
-        server_name  rocketsredglare.com;
-
-        ssl                  on;
-        ssl_certificate      /openssl_keys/rocketsredglare.com/ssl.crt;
-        ssl_certificate_key  /openssl_keys/rocketsredglare.com/server.key;
-
-        ssl_session_timeout  5m;
-
-        ssl_protocols  SSLv2 SSLv3 TLSv1;
-        ssl_ciphers  HIGH:!aNULL:!MD5;
-        ssl_prefer_server_ciphers   on;
-
-        # that's for all other content on the web host
+	access_log /var/log/nginx/default.access.log;
+	error_log /var/log/nginx/default.error.log;
 
 	location / {
 		try_files $uri $uri/ /index.html;
@@ -79,5 +31,5 @@
 		include fastcgi_params;
 	}
 
-    }
 
+    }
