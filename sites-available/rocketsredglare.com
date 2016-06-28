@@ -9,7 +9,7 @@
     server {
         listen       80;
 
-	root /home/marc/rocketsredglare.com;
+	root /var/www/html/rocketsredglare.com;
 
         server_name  rocketsredglare.com;
 
@@ -77,12 +77,12 @@
     #
     server {
         listen       443;
-	root /home/marc/sfrails.com/rockets_redglare_joomla;
+	root /var/www/html/rocketsredglare.com;
         server_name  rocketsredglare.com;
 
         ssl                  on;
-        ssl_certificate      /home/marc/openssl_keys/sfrails.com/ssl.crt;
-        ssl_certificate_key  /home/marc/openssl_keys/sfrails.com/server.key;
+        ssl_certificate      /openssl_keys/sfrails.com/ssl.crt;
+        ssl_certificate_key  /openssl_keys/sfrails.com/server.key;
 
         ssl_session_timeout  5m;
 
