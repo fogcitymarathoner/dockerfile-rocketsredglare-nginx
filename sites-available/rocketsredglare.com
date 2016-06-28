@@ -15,6 +15,7 @@
 	access_log /var/log/nginx/default.access.log;
 	error_log /var/log/nginx/default.error.log;
 
+	server_name rocketsredglare.com;
 	location / {
 		try_files $uri $uri/ /index.html;
 	}
