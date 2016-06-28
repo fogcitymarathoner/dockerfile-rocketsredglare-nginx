@@ -112,39 +112,6 @@
                 alias /home/marc/python_apps/pics/media/;
         }
 
-        location /issue_api_key {
-           proxy_pass         http://access_tokens;
-           proxy_redirect     off;
-           proxy_set_header   Host $host;
-           proxy_set_header   X-Real-IP $remote_addr;
-           proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
-           proxy_set_header   X-Forwarded-Host $server_name;
-        }
-        location /issue_token {
-           proxy_pass         http://access_tokens;
-           proxy_redirect     off;
-           proxy_set_header   Host $host;
-           proxy_set_header   X-Real-IP $remote_addr;
-           proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
-           proxy_set_header   X-Forwarded-Host $server_name;
-        }
-        location /validate_token {
-           proxy_pass         http://access_tokens;
-           proxy_redirect     off;
-           proxy_set_header   Host $host;
-           proxy_set_header   X-Real-IP $remote_addr;
-           proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
-           proxy_set_header   X-Forwarded-Host $server_name;
-        }
-        location /token_list {
-           proxy_pass         http://access_tokens;
-           proxy_redirect     off;
-           proxy_set_header   Host $host;
-           proxy_set_header   X-Real-IP $remote_addr;
-           proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
-           proxy_set_header   X-Forwarded-Host $server_name;
-        }
-
 	location ~ \.php$ {
 		fastcgi_split_path_info ^(.+\.php)(/.+)$;
 		# NOTE: You should have "cgi.fix_pathinfo = 0;" in php.ini
