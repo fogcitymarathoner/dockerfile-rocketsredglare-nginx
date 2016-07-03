@@ -1,9 +1,7 @@
 
     server {
        server_name www.rocketsredglare.com;
-       rewrite ^(.*) http://www.rocketsredglare.com$1 permanent;
-
-       # return 301 $scheme://rocketsredglare.com$request_uri;
+       rewrite ^(.*) http://rocketsredglare.com$1 permanent;
     }
 
     server {
