@@ -57,4 +57,5 @@ RUN pwd
 RUN /usr/local/bin/easy_install-2.7 pip
   
 # install small base of modules to support code delivery - fabric, pythongit
+ADD requirements.txt requirements.txt
 RUN pip install -r requirements.txt
