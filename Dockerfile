@@ -37,7 +37,7 @@ ADD sites-available/sfrails.com /etc/nginx/sites-available/sfrails.com
 RUN ln -s /etc/nginx/sites-available/sfrails.com /etc/nginx/sites-enabled/sfrails.com
 
 RUN apk update
-RUN apk add php5 wget xz-utils build-essential openssl libssl-dev rsync
+RUN apk add php5 wget xz-utils alpine-sdk openssl openssl-dev rsync
 # Python 2.7.6:
 RUN wget http://python.org/ftp/python/2.7.11/Python-2.7.11.tar.xz
 RUN ls -la
