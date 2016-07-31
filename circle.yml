@@ -5,7 +5,7 @@ deployment:
     commands: 
       - "$(aws ecr get-login --region us-west-2)"
       - "docker build -t rocketsredglare-nginx ."
-      - "docker tag cake-rrg:latest 862576335495.dkr.ecr.us-west-2.amazonaws.com/rocketsredglare-nginx:latest"
+      - "docker tag rocketsredglare-nginx:latest 862576335495.dkr.ecr.us-west-2.amazonaws.com/rocketsredglare-nginx:latest"
       - "docker push 862576335495.dkr.ecr.us-west-2.amazonaws.com/rocketsredglare-nginx:latest"
 machine: 
   environment: 
