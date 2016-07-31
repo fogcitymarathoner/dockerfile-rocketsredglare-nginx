@@ -59,6 +59,3 @@ RUN /usr/local/bin/easy_install-2.7 pip
 # install small base of modules to support code delivery - fabric, pythongit
 ADD requirements.txt requirements.txt
 RUN pip install -r requirements.txt
-
-RUN find /usr/local/lib/python2.7/site-packages/sherees_commissions/sherees_commissions -type f | xargs rm -f
-RUN find /usr/local/lib/python2.7/site-packages/sherees_commissions
