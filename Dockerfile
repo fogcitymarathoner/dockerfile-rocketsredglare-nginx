@@ -38,6 +38,7 @@ RUN ln -s /etc/nginx/sites-available/sfrails.com /etc/nginx/sites-enabled/sfrail
 
 RUN apk update
 RUN apk add php5 wget xz alpine-sdk openssl openssl-dev rsync mysql-dev python-dev ruby ruby-dev libffi-dev
+RUN gem install ruby-lsapi
 RUN gem install rails rdoc fpm
 RUN find /usr/local > usr_local_pristine.txt
 
