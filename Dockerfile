@@ -37,12 +37,21 @@ ADD sites-available/sfrails.com /etc/nginx/sites-available/sfrails.com
 RUN ln -s /etc/nginx/sites-available/sfrails.com /etc/nginx/sites-enabled/sfrails.com
 
 RUN apk update
-RUN apk add php5 wget xz alpine-sdk openssl openssl-dev rsync mysql-dev python-dev ruby ruby-dev libffi-dev
-RUN gem install ruby-lsapi
-RUN gem install rails rdoc fpm
-RUN find /usr/local > usr_local_pristine.txt
+RUN apk add php5 wget xz alpine-sdk openssl openssl-dev rsync mysql-dev python-dev
 
-# Python 2.7.6:
+# Witness pristine /usr/local file state
+RUN find /usr/local > usr_local_pristine.txt
+#
+# Alpine is neither RPM or DEB
+#
+# Saving rails FPM gem support until there's a new home
+#
+# RUN apk add ruby ruby-dev ruby-irb ruby-rdoc ruby-ri libffi-dev
+# RUN gem install rails fpm
+
+#
+# Python 2.7.11: alpine-python-2.7.11
+#
 RUN wget http://python.org/ftp/python/2.7.11/Python-2.7.11.tar.xz
 RUN ls -la
 RUN tar xf Python-2.7.11.tar.xz
