@@ -36,6 +36,12 @@ RUN ln -s /etc/nginx/sites-available/sfgeek.net /etc/nginx/sites-enabled/sfgeek.
 ADD sites-available/sfrails.com /etc/nginx/sites-available/sfrails.com
 RUN ln -s /etc/nginx/sites-available/sfrails.com /etc/nginx/sites-enabled/sfrails.com
 
+#
+# sfblur.com - First Non PHP Site
+#
+ADD sites-available/sfblur.com /etc/nginx/sites-available/sfblur.com
+RUN ln -s /etc/nginx/sites-available/sfblur.com /etc/nginx/sites-enabled/sfblur.com
+
 RUN apk update
 RUN apk add php5 wget xz alpine-sdk openssl openssl-dev rsync mysql-dev python-dev
 
