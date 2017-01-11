@@ -43,9 +43,9 @@ ADD sites-available/sfblur.com /etc/nginx/sites-available/sfblur.com
 RUN ln -s /etc/nginx/sites-available/sfblur.com /etc/nginx/sites-enabled/sfblur.com
 
 RUN apk update
-# RUN apk add openssl-dev
+RUN apk add openssl-dev
 RUN apk add openssl
-RUN apk add php5 wget xz alpine-sdk rsync mysql-client mysql-dev python-dev
+RUN apk add php5 wget xz alpine-sdk rsync python-dev
 
 # Witness pristine /usr/local file state
 RUN find /usr/local > usr_local_pristine.txt
