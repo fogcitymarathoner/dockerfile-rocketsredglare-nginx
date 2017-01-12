@@ -39,12 +39,8 @@ RUN ln -s /etc/nginx/sites-available/sfrails.com /etc/nginx/sites-enabled/sfrail
 #
 # sfblur.com - First Non PHP Site
 #
-# Flask does not work with nginx proxy pass????
-#
-# Giving FUP it's own instance and listening on 80
-#
-# ADD sites-available/sfblur.com /etc/nginx/sites-available/sfblur.com
-# RUN ln -s /etc/nginx/sites-available/sfblur.com /etc/nginx/sites-enabled/sfblur.com
+ADD sites-available/sfblur.com /etc/nginx/sites-available/sfblur.com
+RUN ln -s /etc/nginx/sites-available/sfblur.com /etc/nginx/sites-enabled/sfblur.com
 
 RUN apk update
 RUN apk add openssl

@@ -11,7 +11,7 @@
 
     server {
         listen       80;
-
+        # fixme: python apps should have a mount
 	root /var/www/html/rocketsredglare.com;
 
         server_name  sfblur.com;
@@ -24,7 +24,7 @@
         #access_log  logs/host.access.log  main;
 
         location / {
-           proxy_pass         http://fogtest.com;
+           proxy_pass         http://fup_app;
            proxy_redirect     off;
            proxy_set_header   Host $host;
            proxy_set_header   X-Real-IP $remote_addr;
