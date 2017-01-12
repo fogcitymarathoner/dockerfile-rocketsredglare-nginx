@@ -42,6 +42,18 @@ RUN ln -s /etc/nginx/sites-available/sfrails.com /etc/nginx/sites-enabled/sfrail
 ADD sites-available/sfblur.com /etc/nginx/sites-available/sfblur.com
 RUN ln -s /etc/nginx/sites-available/sfblur.com /etc/nginx/sites-enabled/sfblur.com
 
+#
+# pristine.sfblur.com
+#
+ADD sites-available/pristine.sfblur.com /etc/nginx/sites-available/pristine.sfblur.com
+RUN ln -s /etc/nginx/sites-available/pristine.sfblur.com /etc/nginx/sites-enabled/pristine.sfblur.com
+
+#
+# s3.sfblur.com 
+#
+ADD sites-available/s3.sfblur.com /etc/nginx/sites-available/s3.sfblur.com
+RUN ln -s /etc/nginx/sites-available/s3.sfblur.com /etc/nginx/sites-enabled/s3.sfblur.com
+
 RUN apk update
 RUN apk add openssl
 RUN apk add php5 wget xz alpine-sdk rsync python
