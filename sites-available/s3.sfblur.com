@@ -14,7 +14,7 @@
         # fixme: python apps should have a mount
 	root /var/www/html/rocketsredglare.com;
 
-        server_name  sfblur.com;
+        server_name  s3.sfblur.com;
 
         access_log /var/log/nginx/s3.sfblur.com.access.log;
         error_log /var/log/nginx/s3.sfblur.com.error.log;
