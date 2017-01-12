@@ -43,40 +43,18 @@ ADD sites-available/sfblur.com /etc/nginx/sites-available/sfblur.com
 RUN ln -s /etc/nginx/sites-available/sfblur.com /etc/nginx/sites-enabled/sfblur.com
 
 RUN apk update
-RUN apk add openssl-dev
 RUN apk add openssl
-RUN apk add php5 wget xz alpine-sdk rsync python-dev
+RUN apk add php5 wget xz alpine-sdk rsync python
 
 # Witness pristine /usr/local file state
 RUN find /usr/local > usr_local_pristine.txt
-#
-# Alpine is neither RPM or DEB
-#
-# Saving rails FPM gem support until there's a new home
-#
-# RUN apk add ruby ruby-dev ruby-irb ruby-rdoc ruby-ri libffi-dev
-# RUN gem install rails fpm
-
-#
-# Python 2.7.11: alpine-python-2.7.11
-#
-RUN wget http://python.org/ftp/python/2.7.11/Python-2.7.11.tar.xz
-RUN ls -la
-RUN tar xf Python-2.7.11.tar.xz
-WORKDIR Python-2.7.11
-RUN ls
-RUN ./configure --prefix=/usr/local --enable-unicode=ucs4 --enable-shared LDFLAGS="-Wl,-rpath /usr/local/lib"
-RUN make && make altinstall
 
 # install easy_install then pip
 RUN wget https://bootstrap.pypa.io/ez_setup.py -O - > garb.py
-RUN python2.7 garb.py
+RUN python garb.py
 
   
 RUN pwd
 # pip
-RUN /usr/local/bin/easy_install-2.7 pip
-  
-# install small base of modules to support code delivery - fabric, pythongit
-ADD requirements.txt requirements.txt
-RUN pip install -r requirements.txt
+RUN easy_install pip
+ 
