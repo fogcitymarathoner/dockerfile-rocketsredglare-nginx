@@ -12,7 +12,7 @@
     server {
         listen       80;
 
-	root /var/www/html/rocketsredglare.com
+	root /var/www/html/rocketsredglare.com;
 
         server_name  sfblur.com;
 
