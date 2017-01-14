@@ -1,6 +1,6 @@
 
     upstream fup_app {
-         server 172.30.0.153:9191;
+         server 10.0.0.48:9191;
     }
 
     server {
