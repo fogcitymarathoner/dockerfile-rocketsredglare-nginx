@@ -1,6 +1,6 @@
 
     upstream fup_app_pristine {
-         server 172.30.0.153:9192;
+         server 54.187.49.82:9192;
     }
 
     server {
