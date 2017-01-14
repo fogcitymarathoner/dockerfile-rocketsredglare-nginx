@@ -1,6 +1,6 @@
 
     upstream fup_app_s3 {
-         server 172.30.0.153:9193;
+         server 54.187.49.82:9193;
     }
 
     server {
