@@ -1,4 +1,4 @@
-FROM richarvey/nginx-php-fpm
+FROM richarvey/nginx-php-fpm:php5
 
 # removed original raw IP site
 RUN rm /etc/nginx/sites-available/default.conf
