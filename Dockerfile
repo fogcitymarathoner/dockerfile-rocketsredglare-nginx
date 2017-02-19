@@ -37,10 +37,10 @@ ADD sites-available/sfrails.com /etc/nginx/sites-available/sfrails.com
 RUN ln -s /etc/nginx/sites-available/sfrails.com /etc/nginx/sites-enabled/sfrails.com
 
 #
-# s3.sfblur.com
+# dropbox.sfblur.com
 #
-ADD sites-available/s3.sfblur.com /etc/nginx/sites-available/s3.sfblur.com
-RUN ln -s /etc/nginx/sites-available/s3.sfblur.com /etc/nginx/sites-enabled/s3.sfblur.com
+ADD sites-available/dropbox.sfblur.com /etc/nginx/sites-available/dropbox.sfblur.com
+RUN ln -s /etc/nginx/sites-available/dropbox.sfblur.com /etc/nginx/sites-enabled/dropbox.sfblur.com
 
 RUN apk update
 RUN apk add openssl
@@ -57,4 +57,10 @@ RUN python garb.py
 RUN pwd
 # pip
 RUN easy_install pip
- 
+
+# Create self signed certificate
+# just reuse same set.
+ADD generate_ssl_key.sh /usr/local/bin/
+RUN /usr/local/bin/generate_ssl_key.sh moinmoin.example.org
+RUN mv cert.pem /etc/ssl/certs/
+RUN mv key.pem /etc/ssl/private/ 
