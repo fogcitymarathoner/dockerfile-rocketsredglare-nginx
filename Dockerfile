@@ -58,9 +58,3 @@ RUN pwd
 # pip
 RUN easy_install pip
 
-# Create self signed certificate
-# just reuse same set.
-ADD generate_ssl_key.sh /usr/local/bin/
-RUN /usr/local/bin/generate_ssl_key.sh moinmoin.example.org
-RUN mv cert.pem /etc/ssl/certs/
-RUN mv key.pem /etc/ssl/private/ 
