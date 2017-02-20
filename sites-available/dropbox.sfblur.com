@@ -1,6 +1,6 @@
 
     upstream fup_app_dropbox {
-         server 54.187.49.82:9193;
+         server 127.0.0.1:9101;
     }
 
     server {
