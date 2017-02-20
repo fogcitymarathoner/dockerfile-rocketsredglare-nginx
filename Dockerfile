@@ -42,6 +42,12 @@ RUN ln -s /etc/nginx/sites-available/sfrails.com /etc/nginx/sites-enabled/sfrail
 ADD sites-available/dropbox.sfblur.com /etc/nginx/sites-available/dropbox.sfblur.com
 RUN ln -s /etc/nginx/sites-available/dropbox.sfblur.com /etc/nginx/sites-enabled/dropbox.sfblur.com
 
+#
+# angular-dropbox.sfblur.com
+#
+ADD sites-available/angular-dropbox.sfblur.com /etc/nginx/sites-available/angular-dropbox.sfblur.com
+RUN ln -s /etc/nginx/sites-available/angular-dropbox.sfblur.com /etc/nginx/sites-enabled/angular-dropbox.sfblur.com
+
 RUN apk update
 RUN apk add openssl
 RUN apk add php5 wget xz alpine-sdk rsync python
