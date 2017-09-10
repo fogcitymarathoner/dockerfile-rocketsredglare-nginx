@@ -40,7 +40,7 @@
 
         ssl                  on;
         ssl_certificate      /openssl_keys/cake.rocketsredglare.com/ssl.crt;
-	ssl_certificate_key  /openssl_keys/cake.rocketsredglare.com/server.key;
+		ssl_certificate_key  /openssl_keys/cake.rocketsredglare.com/server.key;
         ssl_session_timeout  5m;
 
         ssl_protocols  SSLv2 SSLv3 TLSv1;

@@ -6,13 +6,6 @@ RUN rm /etc/nginx/sites-enabled/default.conf
 
 
 #
-# cake.rocketsredglare.com
-#
-ADD sites-available/cake.rocketsredglare.com /etc/nginx/sites-available/cake.rocketsredglare.com
-RUN ln -s /etc/nginx/sites-available/cake.rocketsredglare.com /etc/nginx/sites-enabled/cake.rocketsredglare.com
-
-
-#
 # rocketsredglare.com
 #
 ADD sites-available/rocketsredglare.com /etc/nginx/sites-available/rocketsredglare.com
